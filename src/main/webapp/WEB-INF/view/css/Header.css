@@ -1,0 +1,311 @@
+@charset "UTF-8";
+.mainBody .head {
+    height: 142px;
+}
+
+.mainWrap .head {
+    background: url(../images/Header/headBg.png) repeat-x;
+    background-image: url(../images/Header/headBg.png);
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: repeat;
+    background-repeat-y: no-repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    height: 142px;
+    position: relative;
+    z-index: 20;
+}
+
+.mainWrap .head .header {
+    width: 1200px;
+    margin: 0 auto 0 auto;
+    height: 90px;
+    position: relative;
+}
+
+.head .header {
+    width: 1200px;
+    margin: 0 auto 0 auto;
+    height: 90px;
+    position: relative;
+    z-index: 30;
+}
+
+.gnbMain {
+    position: relative;
+    height: 52px;
+    background: url(../images/Header/headBgMain.png);
+    repeat-x: ;
+    z-index: 20;
+}
+
+.head .header .logo {
+    position: absolute;
+    left: 50%;
+    top: 0px;
+    width: 202px;
+    margin: 0 0 0 -101px;
+}
+
+.head .header .logo a {
+    display: block;
+    height: 90px;
+    background: url(../images/Header/logo.png);
+    text-indent: -9999%;
+    overflow: hidden;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+}
+
+.loginArea {
+    position: absolute;
+    top: 19px;
+    right: 0px;
+}
+
+.loginArea a {
+    position: relative;
+    display: inline-block;
+    color: #856f56;
+    margin-left: 15px;
+    padding-right: 16px;
+    outline: none;
+    outline-color: initial;
+    outline-style: none;
+    outline-width: initial;
+}
+
+.loginArea a:first-child:before {
+    background: none;
+}
+
+.loginArea a:before {
+    position: absolute;
+    top: 2px;
+    left: -16px;
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 10px;
+    background: #d2c4a5;
+}
+
+.gnbMenu {
+    width: 1200px;
+    margin: 0 auto 0 auto;
+    position: relative;
+}
+
+.headSeoul .gnbMenu .menu {
+    position: absolute;
+    left: 350px;
+    top: 0;
+}
+
+.gnbMenu .menu {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 10;
+}
+
+.gnbMenu ul li {
+    float: left;
+    position: relative;
+}
+
+.headSeoul .gnbMenu ul li.m2 a {
+    width: 118px;
+    background-position: -217px 0px;
+}
+
+.headSeoul .gnbMenu ul li a {
+    background: url(../images/Header/gnbMenu.gif) no-repeat;
+    text-indent: -9999%;
+    overflow: hidden;
+}
+
+.gnbMenu ul li.m2 a {
+    width: 203px;
+    background-position: -143px 0px;
+}
+
+.gnbMenu ul li a {
+    display: block;
+    height: 50px;
+    text-indent: -9999%;
+    overflow: hidden;
+}
+
+.gnbMenu ul li a span {
+    display: block;
+    line-height: 100px;
+    height: 0;
+    overflow: hidden;
+}
+
+.gnbMenu ul .sm {
+    position: absolute;
+    position: absolute;
+    left: 30px;
+    top: 50px;
+    width: 1200px;
+}
+
+.gnbMenu ul .sm {
+    display: none;
+    padding: 4px 0 4px 0;
+}
+
+.gnbMenu ul li {
+    float: left;
+    position: relative;
+}
+
+.gnbMenu ul .m2 .sm li.s1 a {
+    width: 74px;
+    background-position: 0px -30px;
+}
+
+.headSeoul .gnbMenu ul .sm li a {
+    background-image: url(../images/Header/gnbMenuSub.gif);
+}
+
+.headSeoul .gnbMenu ul li.m2 a {
+    width: 118px;
+    background-position: -217px 0px;
+}
+
+.headSeoul .gnbMenu ul li a {
+    background: url(../images/Header/gnbMenu.gif) no-repeat;
+    text-indent: -9999%;
+    overflow: hidden;
+}
+
+.gnbMenu ul .sm li a {
+    background: url(../images/Header/gnbMenu.gif) no-repeat;
+    height: 30px;
+}
+
+.gnbMenu ul .sm li a {
+    background: #efefef;
+    display: block;
+    text-align: center;
+    padding: 0;
+    text-indent: -9999%;
+    overflow: hidden;
+}
+
+.gnbMenu ul li.m2 a {
+    width: 203px;
+    background-position: -143px 0px;
+}
+
+.gnbMenu ul li a {
+    display: block;
+    height: 50px;
+    text-indent: -9999%;
+    overflow: hidden;
+}
+
+.headSeoul .gnbMenu ul li.m3 a {
+    width: 131px;
+    background-position: -335px 0px;
+}
+
+.headSeoul .gnbMenu ul li.m4 a {
+    width: 179px;
+    background-position: -466px 0px;
+}
+
+.headSeoul .gnbMenu ul li.m5 a {
+    width: 150px;
+    background-position: -645px 0px;
+}
+
+.headSeoul .gnbMenu ul .m2 .sm li.s1 a {
+    width: 74px;
+    background-position: 0px -30px;
+}
+
+.headSeoul .gnbMenu ul .m2 .sm li.s2 a {
+    width: 96px;
+    background-position: -74px -30px;
+}
+
+.headSeoul .gnbMenu ul .m2 .sm li.s3 a {
+    width: 63px;
+    background-position: -170px -30px;
+}
+
+.headSeoul .gnbMenu ul .m2 .sm li.s4 a {
+    width: 145px;
+    background-position: -233px -30px;
+}
+
+.headSeoul .gnbMenu ul .m2 .sm li.s5 a {
+    width: 95px;
+    background-position: -378px -30px;
+}
+
+.headSeoul .gnbMenu ul .m3 .sm li.s1 a {
+    width: 75px;
+    background-position: 0px -60px;
+}
+
+.headSeoul .gnbMenu ul .m3 .sm li.s2 a {
+    width: 89px;
+    background-position: -75px -60px;
+}
+
+.headSeoul .gnbMenu ul .m3 .sm li.s3 a {
+    width: 70px;
+    background-position: -164px -60px;
+}
+
+.headSeoul .gnbMenu ul .m4 .sm li.s1 a {
+    width: 88px;
+    background-position: 0px -90px;
+}
+
+.headSeoul .gnbMenu ul .m4 .sm li.s2 a {
+    width: 53px;
+    background-position: -88px -90px;
+}
+
+.headSeoul .gnbMenu ul .m4 .sm li.s3 a {
+    width: 74px;
+    background-position: -141px -90px;
+}
+
+.headSeoul .gnbMenu ul .m4 .sm li.s4 a {
+    width: 73px;
+    background-position: -215px -90px;
+}
+
+.headSeoul .gnbMenu ul .m4 .sm li.s5 a {
+    width: 47px;
+    background-position: -288px -90px;
+}
+
+.headSeoul .gnbMenu ul .m5 .sm li.s1 a {
+    width: 52px;
+    background-position: 0px -120px;
+}
+
+.headSeoul .gnbMenu ul .m5 .sm li.s2 a {
+    width: 72px;
+    background-position: -52px -120px;
+}
+
+.headSeoul .gnbMenu ul .m5 .sm li.s3 a {
+    width: 80px;
+    background-position: -126px -120px;
+}

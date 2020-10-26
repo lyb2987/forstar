@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.bhpayment.BHPayment_Mapper">
+	<sql id="bHPaymentBaseColumns">
+		BH_RESERVATION_NUM, MEMBER_NUM, TP_NUM, BH_MEANS, BH_CHARGE, BH_DATE, BH_STATUS
+	</sql>
+	
+	<insert id="bHPaymentInsert" parameterType="bhp">
+		insert into BH_PAYMENT(<include refid="bHPaymentBaseColumns"/>) 
+		values(#{bHReservationNum}, #{memberNum}, #{tpNum}, '선택 안됨', #{bHCharge}, null, '결제 대기중')
+	</insert>
+	
+	<select id="bHPaymentSelect" parameterType="Long" resultType="bhp">
+		select <include refid="bHPaymentBaseColumns"/> from BH_PAYMENT where TP_NUM = #{value}
+	</select>
+
+	<delete id="bHPaymentDelete" parameterType="Long">
+		delete from BH_PAYMENT where TP_NUM = #{value}
+	</delete>
+	
+	<update id="bHPaymentCompleUpdate" parameterType="Long">
+		update BH_PAYMENT set BH_MEANS = '카드', BH_DATE = sysdate, BH_STATUS = '결제 완료' where TP_NUM = #{value}
+	</update>
+	
+</mapper>

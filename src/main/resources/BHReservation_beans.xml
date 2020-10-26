@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       ">
+	<bean class="controller.bhreservation.BHReservationController" />
+	<bean class="service.bhreservation.BHReservationInsertService" />
+	<bean class="service.bhreservation.BHReservationNumSelectService" />
+	<bean class="service.bhreservation.BHReservationChargeUpdateService" />
+	<bean class="service.bhreservation.BHReservationTotalSelectService" />
+	<bean class="service.bhreservation.BHReservationListSelectService" />
+	<bean class="service.bhreservation.BHReservationDeleteService" />
+	<bean class="service.bhreservation.BHReservationStatusUpdateService" />
+	<bean class="repository.BHReservationRepository" />
+</beans>

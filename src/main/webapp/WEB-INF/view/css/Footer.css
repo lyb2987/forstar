@@ -1,0 +1,361 @@
+@charset "UTF-8";
+
+.foot .localBox {
+    background: url(../images/Footer/localBoxBg.gif) repeat-x;
+    height: 110px;
+}
+
+.foot .localBox .localBoxer {
+    width: 1200px;
+    margin: 0 auto 0 auto;
+    overflow: hidden;
+}
+
+.foot .localBox .compInfo {
+	margin-top : 5px;
+    float: left;
+    width: 230px;
+    height: 110px;
+    position: relative;
+    background: url(../images/Footer/FooterLogo.png) no-repeat;
+    background-image: url(../images/Footer/FooterLogo.png);
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+}
+
+.foot .localBox .compInfo .logo {
+    position: absolute;
+    left: -9999%;
+    overflow: hidden;
+}
+
+.brandWrap {
+    overflow: hidden;
+    line-height: 0;
+}
+
+
+.InfoWrap {
+    float: left;
+    height: 104px;
+    background: url(../images/Footer/localBoxLinkInfoBg.gif) repeat-x;
+}
+
+.InfoWrap .addressInfo {
+    float: left;
+    width: 294px;
+    height: 104px;
+    background: url(../images/Footer/addressAndTel.png) no-repeat;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+
+.foot .localBox .linkInfo {
+    float: left;
+    width: 510px;
+    height: 103px;
+    position: relative;
+}
+
+.foot .localBox .linkInfo .introduction {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+}
+
+.foot .localBox .linkInfo .introduction .dt {
+    float: left;
+    width: 74px;
+    height: 20px;
+    background: url(../images/Footer/localBoxLinkInfo.gif) no-repeat -30px -30px;
+    text-indent: -9999%;
+    overflow: hidden;
+}
+
+.foot .localBox .linkInfo .introduction dd {
+    float: left;
+    margin: 0 0px 0 0;
+}
+
+.foot .localBox .linkInfo .introduction dd.d1 a {
+    width: 60px;
+    background-position: -103px -30px;
+}
+
+.foot .localBox .linkInfo .introduction a {
+    display: block;
+    height: 20px;
+    background: url(../images/Footer/localBoxLinkInfo.gif) no-repeat -30px -30px;
+    text-indent: -9999%;
+    overflow: hidden;
+}
+
+.foot .localBox .linkInfo .introduction dd.d2 a {
+    width: 70px;
+    background-position: -162px -30px;
+}
+
+.foot .localBox .linkInfo .introduction dd.d3 a {
+    width: 82px;
+    background-position: -232px -30px;
+}
+
+.foot .localBox .linkInfo .introduction dd.d4 a {
+    width: 65px;
+    background-position: -314px -30px;
+}
+
+.foot .localBox .linkInfo .inquiries {
+    position: absolute;
+    left: 30px;
+    top: 62px;
+}
+
+.foot .localBox .linkInfo .inquiries .dt {
+    float: left;
+    width: 74px;
+    height: 20px;
+    background: url(../images/Footer/localBoxLinkInfo.gif) no-repeat -30px -61px;
+    text-indent: -9999%;
+    overflow: hidden;
+}
+
+.foot .localBox .linkInfo .inquiries dd {
+    float: left;
+    margin: 0 0px 0 0;
+}
+
+.foot .localBox .linkInfo .inquiries a {
+    display: block;
+    height: 20px;
+    background: url(../images/Footer/localBoxLinkInfo.gif) no-repeat -20px -35px;
+    text-indent: -9999%;
+    overflow: hidden;
+}
+
+.foot .localBox .linkInfo .inquiries dd.d1 a {
+    width: 47px;
+    background-position: -103px -61px;
+}
+
+.foot .localBox .linkInfo .inquiries dd.d2 a {
+    width: 48px;
+    background-position: -150px -61px;
+}
+
+
+.foot .localBox .linkInfo .inquiries dd.d3 a {
+    width: 65px;
+    background-position: -198px -61px;
+}
+
+
+.foot .localBox .snsNews {
+    float: left;
+    width: 165px;
+    height: 103px;
+    position: relative;
+    background: url(../images/Footer/localBoxSnsNewsBg.gif) no-repeat;
+}
+
+.foot .localBox .snsNews .sns {
+    position: absolute;
+    right: 0px;
+    top: 30px;
+}
+
+.foot .localBox .snsNews .sns .dt {
+    margin: 0 0 6px 0;
+    background: url(../images/Footer/localBoxSnsNews.gif) no-repeat -26px -35px;
+    width: 40px;
+    height: 20px;
+    text-indent: -9999%;
+    overflow: hidden;
+}
+
+.foot .localBox .snsNews .sns dd {
+    float: left;
+    margin: 0 0 0 5px;
+}
+
+.foot .localBox .snsNews .sns .facebook a, .foot .localBox .snsNews .sns .twitter a, .foot .localBox .snsNews .sns .trip a, .foot .localBox .snsNews .sns .blog a, .foot .localBox .snsNews .sns .weibo a, .foot .localBox .snsNews .sns .google a, .foot .localBox .snsNews .sns .instagram a, .foot .localBox .snsNews .sns .youtube a {
+    width: 23px;
+    height: 23px;
+    background: url(../images/Footer/localBoxSnsNews.gif);
+    vertical-align: middle;
+    display: block;
+    overflow: hidden;
+    line-height: 90px;
+}
+
+
+.foot .localBox .snsNews .sns .facebook {
+    margin-left: 0;
+}
+
+
+.foot .localBox .snsNews .sns .facebook a {
+    background-position: -26px -61px;
+}
+
+
+.foot .localBox .snsNews .sns .trip a {
+    background-position: -54px -61px;
+}
+
+.foot .localBox .snsNews .sns .weibo a {
+    background-position: -82px -61px;
+}
+
+.foot .localBox .snsNews .sns .google a {
+    display: none;
+    background-position: -110px -61px;
+}
+
+.foot .localBox .snsNews .sns .instagram a {
+    background-position: -138px -61px;
+}
+
+.foot .localBox .snsNews .sns .youtube a {
+    background-position: -166px -61px;
+}
+
+.footer {
+    width: 1200px;
+    margin: 0 auto 0 auto;
+    height: 160px;
+    position: relative;
+    background: url(../images/Footer/footerBg.gif) repeat-x;
+    overflow: hidden;
+}
+
+.footer .linkBox {
+    position: absolute;
+    left: 0px;
+    top: 18px;
+}
+
+.footer .linkBox li {
+    float: left;
+    margin: 0 0px 0 0;
+}
+
+.footer .linkBox li a {
+    height: 25px;
+    display: block;
+    background: url(../images/Footer/footLinkBox.gif) no-repeat;
+    text-indent: -9999%;
+    line-height: 200px;
+    overflow: hidden;
+}
+
+.footer .linkBox li.link1 a {
+    width: 61px;
+    background-position: 0px 0px;
+}
+
+.footer .linkBox li.link2 a {
+    width: 76px;
+    background-position: -61px 0px;
+}
+
+.footer .linkBox li.link3 a {
+    width: 120px;
+    background-position: -137px 0px;
+}
+
+.footer .linkBox li.link4 a {
+    width: 130px;
+    background-position: -257px 0px;
+}
+
+.footer .linkBox li.link5 a {
+    width: 171px;
+    background-position: -387px 0px;
+}
+
+.footer .selectLang {
+    position: absolute;
+    right: -7px;
+    top: 19px;
+}
+
+.footer .selectLang li {
+    float: left;
+    margin: 0 0px 0 0;
+}
+
+.footer .selectLang li a {
+    background: url(../images/Footer/footSelectLang.gif) no-repeat;
+    height: 25px;
+    display: block;
+    text-indent: -9999%;
+    overflow: hidden;
+}
+
+.footer .selectLang li.en a {
+    width: 68px;
+    background-position: -58px 0px;
+}
+
+.footer .selectLang li.ja a {
+    width: 50px;
+    background-position: -126px 0px;
+}
+
+.footer .selectLang li.zh a {
+    width: 70px;
+    background-position: -176px 0px;
+}
+
+.footer .adressBox {
+    position: absolute;
+    left: 0px;
+    top: 76px;
+    height: 67px; 
+    width: 1100px;
+    background: url(../images/Footer/footCopyright.gif) no-repeat 0 0;
+    display: block;
+    line-height: 100px;
+    overflow: hidden;
+    text-indent: -9999px;
+}
+
+.footer .adressBox * {
+    line-height: 100px;
+    overflow: hidden;
+}
+
+
+.footer .adressBox {
+    position: absolute;
+    left: 0px;
+    top: 76px;
+    height: 80px;
+    width: 1100px;
+    background: url(../images/Footer/footCopyright.png) no-repeat 0 0;
+    display: block;
+    line-height: 100px;
+    overflow: hidden;
+    text-indent: -9999px;
+}
+
+.footer .certiMark {
+    position: absolute;
+    right: 0;
+    top: 82px;
+    width: 688px;
+    height: 37px;
+    background: url(../images/Footer/mark_seoul.gif) no-repeat 0 0;
+}
+
+.footer .certiMark p {
+    text-indent: -9999px;
+}

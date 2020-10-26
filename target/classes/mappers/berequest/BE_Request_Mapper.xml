@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.berequest.BE_Request_Mapper">
+
+	<sql id="bERequestBaseColumns">
+		BE_REQUEST_NUM, BH_RESERVATION_NUM, BE_NUM, EMPLOYEE_NUM, MEMBER_NUM, BE_REQUEST_DATE, BE_REQUEST_TIME
+	</sql>
+
+	<select id="bERequestDateChange" parameterType="rentDateTime" resultType="Long">
+		select BE_NUM from BE_REQUEST where
+        to_date(#{rentDate}, 'YYYYMMDDHH24MISS') between BE_REQUEST_DATE and BE_REQUEST_TIME
+        or to_date(#{rentTime}, 'YYYYMMDDHH24MISS') between BE_REQUEST_DATE and BE_REQUEST_TIME
+	</select>
+	
+	<insert id="bEReqeustInsert" parameterType="bERequest">
+		insert into BE_REQUEST(<include refid="bERequestBaseColumns"></include>) 
+		values(BE_REQUEST_SEQ.nextval, #{bHReservationNum}, #{bENum , jdbcType=VARCHAR}, #{employeeNum , jdbcType=VARCHAR}, #{memberNum}, #{bERequestDate}, #{bERequestTime})
+	</insert>
+	
+	<resultMap type="employee" id="employeeMap">
+		<result column="EMPLOYEE_NUM" property="employeeNum"/>
+		<result column="DEPARTMENT_NUM" property="departmentNum"/>
+		<result column="POSITION_NUM" property="positionNum"/>
+		<result column="EMPLOYEE_EMAIL" property="employeeEmail"/>
+		<result column="EMPLOYEE_PHONE" property="employeePhone"/>
+		<result column="EMPLOYEE_PHONE2" property="employeePhone2"/>
+		<result column="EMPLOYEE_PAY" property="employeePay"/>
+		<result column="EMPLOYEE_BANK" property="employeeBank"/>
+		<result column="EMPLOYEE_BANKNUM" property="employeeBankNum"/>
+		<result column="EMPLOYEE_JOINDAY" property="employeeJoinDay"/>
+		<result column="EMPLOYEE_NAME" property="employeeName"/>
+	</resultMap>
+	
+	<resultMap type="be" id="beMap">
+		<result column="BE_NUM" property="bENum"/>
+		<result column="EMPLOYEE_NUM" property="employeeNum"/>
+		<result column="BE_CHARGE" property="bECharge"/>
+		<result column="BE_DUTIES" property="bEDuties"/>
+	</resultMap>
+	
+	<resultMap type="bERequestDetail" id="bERequestDetailMap">
+		<result column="BE_REQUEST_NUM" property="bERequestNum"/>
+		<result column="BH_RESERVATION_NUM" property="bHReservationNum"/>
+		<result column="BE_NUM" property="bENum"/>
+		<result column="EMPLOYEE_NUM" property="employeeNum"/>
+		<result column="MEMBER_NUM" property="memberNum"/>
+		<result column="BE_REQUEST_DATE" property="bERequestDate"/>
+		<result column="BE_REQUEST_TIME" property="bERequestTime"/>
+		<association property="be" resultMap="beMap"/>
+		<association property="employee" resultMap="employeeMap"/>
+	</resultMap>
+	
+	<select id="bEDRequestetailListSelectByRNum" parameterType="Long" resultMap="bERequestDetailMap">
+		select 
+		    BE_REQUEST_NUM, ber.BE_NUM as BE_NUM, ber.EMPLOYEE_NUM as EMPLOYEE_NUM, BE_REQUEST_DATE, BE_REQUEST_TIME, MEMBER_NUM, BH_RESERVATION_NUM,
+		    BE_CHARGE, BE_DUTIES,
+		    DEPARTMENT_NUM, POSITION_NUM, EMPLOYEE_EMAIL, EMPLOYEE_PHONE, 
+		    EMPLOYEE_PHONE2, EMPLOYEE_PAY, EMPLOYEE_BANK, EMPLOYEE_BANKNUM, EMPLOYEE_JOINDAY, EMPLOYEE_NAME
+		from BE_REQUEST ber
+			join BANQUET_EMPLOYEE be on ber.EMPLOYEE_NUM = be.EMPLOYEE_NUM
+			join EMPLOYEE emp on be.EMPLOYEE_NUM = emp.EMPLOYEE_NUM
+		where BH_RESERVATION_NUM = #{value}
+	</select>
+
+	<delete id="bERequestListDelete" parameterType="String">
+		delete from BE_REQUEST where BE_REQUEST_NUM = #{value}
+	</delete>
+	
+	<delete id="bERequesDelete" parameterType="Long">
+		delete from BE_REQUEST where BE_REQUEST_NUM = #{value}
+	</delete>
+	
+</mapper>

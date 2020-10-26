@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 	
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="roomAdmin_Mapper">
+<cache />
+	<!-- 객실 -->
+	<sql id="basecolumnRoom">
+		ROOM_NUM,RATING_NUM,ROOM_PIC,ROOM_CONTENT,ROOM_PAY
+	</sql>
+	
+	<!-- 객실등급 -->
+	<sql id="basecolumnClass">
+		RATING_NUM,RATING_NAME,RATING_BAD,RATING_ACREAGE,RATING_VIEW,RATING_PEOPLE
+	</sql>
+	
+	<!-- 청소목록 -->
+	<sql id="basecolumnLaundry">
+	 LAUNDRY_NUM,LAUNDRY_BAD,LAUNDRY_CHANGE,LAUNDRY_PREVENTION
+	</sql>
+	<!--  청소요청 -->
+	<sql id="basecolumnCleaning">
+	 CLEANING_NUM,ROOM_RESERVATION_NUM,LAUNDRY_NUM,EMPLOYEE_NUM,MEMBER_NUM,CLEANING_CLEAR
+	</sql>
+	<!--  청소요청 -->
+	<insert id="cleaningInsert" parameterType="model.DTO.CleaningDTO" >
+	insert into CLEANING ( <include refid="basecolumnCleaning" /> )
+	values(#{cleaningNum}, #{roomReserNum}, #{laundryNum}, #{employeeNum}, #{memberNum}, #{cleaningClear})
+</insert>
+
+	<!-- 청소목록 -->
+	<insert id="laundryInsert" parameterType="model.DTO.LaundryDTO" >
+	insert into LAUNDRY ( <include refid="basecolumnLaundry" /> )
+	values(#{laundryNum}, #{laundryBad}, #{laundryChange}, #{laundryPrevention})
+</insert>
+
+<resultMap type="lddto" id="baseBoardMapLaundry">
+		<id column="LAUNDRY_NUM" jdbcType="BIGINT" property="laundryNum"/>   
+		<result column="LAUNDRY_BAD" jdbcType="TIMESTAMP" property="laundryBad"/> 
+		<result column="LAUNDRY_CHANGE" jdbcType="TIMESTAMP" property="laundryChange"/>
+		<result column="LAUNDRY_PREVENTION" jdbcType="TIMESTAMP" property="laundryPrevention"/>
+	</resultMap>
+<select id="laundryList" parameterType="string" resultMap="baseBoardMapLaundry">
+		select <include refid="basecolumnLaundry" /> from LAUNDRY
+	</select> 
+	
+	
+	<!-- 객실 -->
+	<insert id="roomInsert" parameterType="model.DTO.RoomInfoDTO" >
+	insert into ROOM ( <include refid="basecolumnRoom" /> )
+	values(#{roomNum}, #{ratingNum}, #{roomPic}, #{roomContent}, #{roomPay})
+</insert>
+	
+	<resultMap type="raidto" id="baseBoardMapRoom">
+		
+		<id column="ROOM_NUM" jdbcType="BIGINT" property="roomNum"/>   
+		<result column="RATING_NUM" jdbcType="BIGINT" property="ratingNum"/> 
+		<result column="ROOM_PIC" jdbcType="VARCHAR" property="roomPic"/>
+		<result column="ROOM_CONTENT" jdbcType="VARCHAR" property="roomContent"/>
+		<result column="ROOM_PAY" jdbcType="BIGINT" property="roomPay"/>	
+	</resultMap>
+	
+	<!-- 객실예약룸 리스트 -->
+	<select id="roomClist" parameterType="string" resultMap="baseBoardMapRoom">
+		select <include refid="basecolumnRoom" /> from ROOM
+		<trim prefix="where" prefixOverrides="AND | OR">
+		<if test="value != null">
+			ROOM_NUM=#{roomNum}  
+		</if>
+	</trim>
+	</select> 
+	
+	<select id="roomList" parameterType="string" resultMap="baseBoardMapRoom">
+		select <include refid="basecolumnRoom" /> from ROOM
+		<trim prefix="where" prefixOverrides="AND | OR">
+		<if test="value != null">
+			ROOM_NUM=#{roomNum}  
+		</if>
+	</trim>
+	</select> 
+
+<select id="roomModifyList" parameterType="Integer" resultMap="baseBoardMapRoom">
+		select <include refid="basecolumnRoom" /> from ROOM
+		<trim prefix="where" prefixOverrides="AND | OR">
+		<if test="value != null">
+			ROOM_NUM=#{roomNum}  
+		</if>
+	</trim>
+</select>
+
+<select id="roomModify" parameterType="Integer" resultMap="baseBoardMapRoom">
+		select <include refid="basecolumnRoom" /> from ROOM
+		<where>
+			<if test="value!=null">
+				ROOM_NUM=#{roomNum}
+			</if>
+		</where>
+	</select>
+
+<update id="roomUpdate" parameterType="model.DTO.RoomInfoDTO" >
+	update ROOM
+	<trim prefix="set" suffixOverrides=",">
+		
+		<if test="ratingNum != null">
+			RATING_NUM = #{ratingNum},
+		</if>
+		<if test="roomContent != null">
+			ROOM_CONTENT = #{roomContent},
+		</if>
+		<if test="roomContent == null">
+			ROOM_CONTENT = null,
+		</if>
+		<if test=" roomPay != null">
+			ROOM_PAY = #{roomPay},
+		</if>
+		<if test=" roomPic != null">
+			ROOM_PIC = #{roomPic},
+		</if>
+		<if test=" roomPic == null">
+			ROOM_PIC = null,
+		</if>
+		
+		</trim>
+	where room_num = #{roomNum}
+	</update>
+	
+	<select id="roomCount" resultType="int">
+		select count(*) from ROOM
+	</select>
+	
+	<!-- 객실등급 -->
+	<insert id="roomClassInsert"  parameterType="model.DTO.RoomAdminClassDTO">   <!-- paramterType:실제 값을 가지고 있는애 -->
+		insert into RATING (<include refid="basecolumnClass" />)
+		values(#{ratingNum},#{ratingName},#{ratingBad},#{ratingAcreage},#{ratingView},#{ratingPeople})
+	</insert>
+	
+	
+	 <resultMap type="racdto" id="baseBoardMapClass">
+		
+		<id column="RATING_NUM" jdbcType="BIGINT" property="ratingNum"/>   
+		<result column="RATING_NAME" jdbcType="VARCHAR" property="ratingName"/> 
+		<result column="RATING_BAD" jdbcType="BIGINT" property="ratingBad"/>
+		<result column="RATING_ACREAGE" jdbcType="BIGINT" property="ratingAcreage"/>
+		<result column="RATING_VIEW" jdbcType="VARCHAR" property="ratingView"/>	
+		<result column="RATING_PEOPLE" jdbcType="BIGINT" property="ratingPeople"/>
+		
+	</resultMap>
+
+	<select id="roomClassList" parameterType="string" resultMap="baseBoardMapClass">
+		select <include refid="basecolumnClass" /> from RATING
+	</select> 
+</mapper>

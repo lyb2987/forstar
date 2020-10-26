@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.be.BE_Mapper">
+	
+	<sql id="bEBasecols">
+		BE_NUM, EMPLOYEE_NUM, BE_CHARGE, BE_DUTIES
+	</sql>
+	
+	<select id="bEListSelect" resultType="be">
+		select BE_NUM, EMPLOYEE_NUM, BE_CHARGE, BE_DUTIES from BANQUET_EMPLOYEE
+	</select>
+	
+	<insert id="bEInsert" parameterType="be">
+		insert into BANQUET_EMPLOYEE(<include refid="bEBasecols" />) values(#{bENum}, #{employeeNum}, #{bECharge}, #{bEDuties})
+	</insert>
+	
+	<resultMap type="employee" id="employee">
+		<result column="EMPLOYEE_NUM" property="employeeNum"/>
+		<result column="DEPARTMENT_NUM" property="departmentNum"/>
+		<result column="POSITION_NUM" property="positionNum"/>
+		<result column="EMPLOYEE_EMAIL" property="employeeEmail"/>
+		<result column="EMPLOYEE_PHONE" property="employeePhone"/>
+		<result column="EMPLOYEE_PHONE2" property="employeePhone2"/>
+		<result column="EMPLOYEE_PAY" property="employeePay"/>
+		<result column="EMPLOYEE_BANK" property="employeeBank"/>
+		<result column="EMPLOYEE_BANKNUM" property="employeeBankNum"/>
+		<result column="EMPLOYEE_JOINDAY" property="employeeJoinDay"/>
+		<result column="EMPLOYEE_NAME" property="employeeName"/>
+	</resultMap>
+	
+	<resultMap type="bEDetail" id="bEDetail">
+		<result column="BE_NUM" property="bENum"/>
+		<result column="EMPLOYEE_NUM" property="employeeNum"/>
+		<result column="BE_CHARGE" property="bECharge"/>
+		<result column="BE_DUTIES" property="bEDuties"/>
+		<collection property="employee" resultMap="employee"/>
+	</resultMap>
+	
+	<select id="bEDetailListSelect" parameterType="rentDateTime" resultMap="bEDetail">
+		select 
+			BE_NUM, ep.EMPLOYEE_NUM as EMPLOYEE_NUM, BE_CHARGE, BE_DUTIES, DEPARTMENT_NUM, POSITION_NUM, EMPLOYEE_EMAIL, EMPLOYEE_PHONE, 
+			EMPLOYEE_PHONE2, EMPLOYEE_PAY, EMPLOYEE_BANK, EMPLOYEE_BANKNUM, EMPLOYEE_JOINDAY, EMPLOYEE_NAME 
+        from BANQUET_EMPLOYEE be, EMPLOYEE ep
+        where be.EMPLOYEE_NUM = ep.EMPLOYEE_NUM
+	</select>
+	
+	<!-- 
+		select 
+		    be.BE_NUM as BE_NUM, be.EMPLOYEE_NUM as EMPLOYEE_NUM, BE_CHARGE, BE_DUTIES,
+		    DEPARTMENT_NUM, POSITION_NUM, EMPLOYEE_EMAIL, EMPLOYEE_PHONE, 
+		    EMPLOYEE_PHONE2, EMPLOYEE_PAY, EMPLOYEE_BANK, EMPLOYEE_BANKNUM, EMPLOYEE_JOINDAY, EMPLOYEE_NAME
+		from BANQUET_EMPLOYEE be
+		    join EMPLOYEE emp on be.EMPLOYEE_NUM = emp.EMPLOYEE_NUM;
+	 -->
+</mapper>

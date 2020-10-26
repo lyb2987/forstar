@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       ">
+
+	<bean class="controller.main.MainController"/>
+	<bean class="controller.roomadmin.RoomAdminController"/>
+	<bean class="controller.room.RoomController"/>
+	<bean class="controller.member.MemberController"/>
+	<bean class="controller.member.LoginController"/>
+	<bean class="controller.member.LogoutController"/>
+	<bean class="controller.mypage.MypageController" />
+	<!--  
+	<bean id="mailService" class="controller.main.MailService"></bean>
+	-->
+</beans>

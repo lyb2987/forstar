@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+.mainVisual {
+    /* overflow: visible; */
+    height: 720px;
+    background: #fff;
+}
+
+.mainVisual {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+    margin-bottom: 50px;
+    margin-top: -2px;
+    background: #000;
+}
+
+.mainVisual .slides, .mainVisual .slides {
+    position: absolute;
+    left: 50%;
+    margin: 0 0 0 -960px;
+    width: 1920px;
+}
+
+.mainVisual .slides, .mainVisual .slides li {
+    height: 600px;
+    text-align: center;
+    background: #000;
+}
+
+.mainVisual .mainControl a {
+    display: inline-block;
+    width: 23px;
+    height: 37px;
+    background: url(../images/Main/icoSlideNav.png) no-repeat;
+    overflow: hidden;
+    line-height: 25;
+}
+
+.mainVisual .mainControl .flex-direction-nav .flex-nav-prev, .mainVisual .mainControl .flex-direction-nav .flex-nav-next {
+    margin-top: -80px;
+}
+
+.mainVisual .mainControl .flex-direction-nav .flex-nav-prev {
+    position: absolute;
+    left: 50%;
+    margin-left: -600px;
+}
+
+.mainVisual .mainControl .flex-direction-nav li {
+    height: 37px;
+    position: absolute;
+    top: 50%;
+    margin: -19px 0 0 0;
+    z-index: 2;
+}
+
+.mainVisual .mainControl .flex-direction-nav .flex-nav-next {
+    position: absolute;
+    right: 50%;
+    margin-right: -600px;
+}
+
+.mainVisual .mainControl .flex-direction-nav .flex-nav-next a {
+    background-position: right 0;
+}

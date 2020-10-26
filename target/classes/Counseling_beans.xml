@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       ">
+	<bean class="controller.counseling.CounselingController" />
+	<bean class="service.counseling.CounselingInsertService" />
+	<bean class="service.counseling.CounselingListService" />
+	<bean class="service.counseling.CounselingDetailService" />
+	<bean class="service.counseling.CounselingModifyService" />
+	<bean class="service.counseling.CounselingDeleteService" />
+	<bean class="service.counseling.CounselingMemberNumSelectService" />
+	<bean class="service.counseling.CounselingSelectService" />
+	<bean class="repository.CounselingRepository" />	
+	
+</beans>

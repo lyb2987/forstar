@@ -1,0 +1,376 @@
+@charset "UTF-8";
+
+.contain .container {
+    width: 1200px;
+    min-height: 500px;
+    margin: auto;
+    zoom: 1;
+    margin: 0 auto 100px auto;
+}
+
+.joinBody .contain .contents {
+    float: none !important;
+    width: auto !important;
+    margin: auto !important;
+}
+
+.contents .location {
+    float: right;
+    height: 20px;
+    padding: 9px 0 0 0;
+    margin: 0 0 -30px 0;
+    overflow: hidden;
+    z-index: 9;
+    position: relative;
+}
+
+.rgt {
+    right: 370px;
+}
+
+.contents .location .list {
+    display: block;
+    font-size: 11px;
+    background: url(../images/Login/locaton.gif) no-repeat 0 1px;
+    line-height: 12px;
+    padding: 0 0 0 17px;
+}
+
+.contents .location .list .crPosit {
+    position: absolute;
+    left: -9999%;
+}
+
+.contents .location .list strong {
+    color: #865009;
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+.loginBox.contents .headTit {
+    border-bottom: #432c10 solid 5px;
+    height: 47px;
+    width: 866px;
+    margin: 0 auto;
+    margin-top : 30px;
+}
+
+.contents .headTit {
+    position: relative;
+    z-index: 8;
+    height: 47px;
+    border-bottom: #432c10 solid 5px;
+    width: 866px;
+}
+
+.loginBox.contents .headTit .tit {
+    background: url(../images/Login/loginTit.gif) no-repeat;
+    width: 467px;
+    height: 47px;
+    line-height: 200px;
+    overflow: hidden;
+}
+
+.loginBox .top {
+    background: url(../images/Login/loginTop.png) no-repeat;
+    width: 600px;
+    height: 144px;
+    margin: auto;
+}
+
+.loginBox .top .logo, .loginBox .top .info {
+    position: absolute;
+    left: -9999%;
+}
+
+.logo {
+    margin-left: 14%;
+}
+
+.loginBox .tabForm .rBtn {
+    font-size: 12px;
+    font-weight: bold;
+    color: #444444;
+    padding-bottom: 10px;
+    display: block;
+    position: relative;
+    top: 70px;
+    left: 40px;
+    width: 482px;
+    margin: 0 auto;
+}
+
+.loginErrorDiv {
+	text-align: center;
+	font-weight: bold;
+	color : #444444;
+}
+
+
+
+div.radio {
+    margin: 0 0 2px 5px;
+}
+
+div.radio {
+    position: relative;
+}
+
+div.radio span {
+    display: -moz-inline-box;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    text-align: center;
+    background: none;
+}
+
+div.radio span.checked {
+    background-position: -72px -299px;
+}
+
+div.radio input {
+    border: none;
+    background: none;
+    display: -moz-inline-box;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    text-align: center;
+}
+
+div.radio, div.radio span, div.radio input {
+    width: 18px;
+    height: 18px;
+}
+
+.loginBox .tabForm .ctn {
+    display: none;
+    overflow: hidden;
+    zoom: 1;
+}
+
+.loginBox .tabForm .ctnOn {
+    display: block;
+}
+
+
+.loginBox .box {
+    background: #f1ebd6;
+    border-top: #a1886f solid 3px;
+    padding: 70px 0 60px 0;
+    width: 600px;
+    margin: auto;
+}
+
+.loginBox .box .formBox {
+    width: 404px;
+    margin: auto;
+    position: relative;
+}
+
+.loginBox .box .cBox {
+    color: #444;
+}
+
+.loginBox .formBox .loginSet {
+    position: relative;
+    width: 378px; 
+    zoom: 1;
+}
+
+.loginBox .formBox .loginSet .inputForm {
+    position: relative;
+    width: 200px;
+    height: 60px;
+    margin-right: -100px;
+    /*margin: 0 0 7px 0;*/
+}
+
+
+.loginBox .formBox .inputId label, .loginBox .formBox .inputPw label {
+    position: absolute;
+    left: -9999%;
+}
+
+.loginBox .formBox .loginSet .inputForm .inputId {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.loginBox .inputId .id {
+    background-position: 2px 3px;
+    width: 200px;
+    height: 20px;
+    margin: 0 0 7px 0;
+}
+
+.loginBox .formBox .loginSet .inputForm .inputPw {
+    position: absolute;
+    left: 0px;
+    top: 32px;
+}
+
+.loginBox .inputPw .pw {
+    background-position: 2px -29px;
+    width: 200px;
+    height: 20px;
+}
+
+div.checker {
+    margin-right: 0px;
+    position: relative;
+    margin-top: -3px;
+}
+
+
+div.checker, div.checker span, div.checker input {
+    width: 19px;
+    height: 19px;
+}
+
+div.rsvSelector, div.rsvSelector span, .optionList div.selector, .optionList div.selector span, .rsvHubSelector div.selector, .rsvHubSelector div.selector span, div.selector, div.selector span, div.checker span, div.radio span, div.uploader, div.uploader span.action, div.button, div.button span {
+    background-image: url(../images/UsingResource/uiForm.png);
+    background-repeat: no-repeat;
+    -webkit-font-smoothing: antialiased;
+}
+
+.uiform[type=checkbox] {
+    border: none;
+}
+
+div.checker input {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    border: none;
+    background: none;
+    display: -moz-inline-box;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+}
+
+.loginBox .formBox .loginSet .loginBtn {
+    position: absolute;
+    right: 0px;
+    top: 0;
+    padding-left: 5px;
+}
+
+.loginBox .formBox .loginSet .loginBtn .btnLogin {
+    width: 104px;
+    height: 58px;
+    margin: 0;
+    background: url(../images/Login/loginBtnLogin.gif) no-repeat !important;
+    border: none;
+    font-size: 0;
+    line-height: 200px;
+    overflow: hidden;
+}
+
+.loginBox .formBox .btn {
+    margin: 5px 0 0 0;
+    font-size: 0;
+}
+
+.loginBox .formBox .btn .btnJoin {
+    background: url(../images/Login/loginBtnJoin.png) no-repeat;
+    width: 107px;
+    height: 27px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 100px;
+    overflow: hidden;
+    margin: 0 4px 0 0;
+}
+
+.loginBox .formBox .btn .btnLostId {
+    background: url(../images/Login/loginBtnLostId.png) no-repeat;
+    width: 194px;
+    height: 27px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 100px;
+    overflow: hidden;
+    margin: 0 4px 0 0;
+}
+
+.loginBox .formBox .btn .btnLostPw {
+    background: url(../images/Login/loginBtnLostPw.png) no-repeat;
+    width: 95px;
+    height: 27px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 100px;
+    overflow: hidden;
+}
+
+.loginT {
+    background: none repeat scroll 0 0 #FBFBFB;
+    text-align: center;
+    border: 1px solid #E9E9E9;
+    padding: 8px 20px;
+    width: 557px;
+    margin: 10px auto;
+}
+
+.loginT p {
+    color: #666666;
+}
+
+div.checker span {
+    display: -moz-inline-box;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    text-align: center;
+    background-position: 0 -279px;
+}
+
+.loginBox .formBox .loginSet .msg {
+    font-size: 11px;
+    color: #6e583e;
+    padding: 3px 0;
+    margin: 5px 0 0 0;
+}
+
+.beLogin {
+    background: #f1ebd6;
+    padding: 20px 0 20px 0;
+    width: 600px;
+    margin: 10px auto;
+}
+
+.beLogin .tpBox {
+    color: #666666;
+    width: 420px;
+    margin: 0 auto;
+    line-height: 16px;
+}
+
+.beLogin .btnBox {
+    padding-top: 20px;
+    width: 212px;
+    margin: 0 auto;
+}
+
+.btnOnline {
+    display: block;
+    border: none;
+    width: 212px;
+    height: 40px;
+    background: url(../../images/ko/btn/btnOnline.gif) no-repeat left top;
+}
+
+.btnOnline > span {
+    font-size: 0;
+    overflow: hidden;
+    text-indent: -9999999px;
+}
+
+
+
+
+

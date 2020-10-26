@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.banquet.Banquet_Mapper">
+
+<sql id="banquetBasecols">
+	BANQUET_NUM, BANQUET_TYPE, BANQUET_PURPOSE, BANQUET_REQUEST, BANQUET_CHARGE
+</sql>
+
+<insert id="banquetInsert" parameterType="banquet">
+	insert into BANQUET(<include refid="banquetBasecols" />)
+	values(BANQUET_SEQ.nextval, #{banquetType}, #{banquetPurpose}, #{banquetRequest}, #{banquetCharge})
+</insert>
+
+<select id="banquetNumSelect" parameterType="banquetC" resultType="int">
+	select BANQUET_NUM from BANQUET where BANQUET_TYPE = #{banquetType} and BANQUET_PURPOSE = #{banquetPurpose} 
+	and BANQUET_REQUEST = #{banquetRequest} and BANQUET_CHARGE = #{banquetCharge}
+</select>
+
+<select id="banquetSelect" parameterType="Long" resultType="banquet">
+	select <include refid="banquetBasecols"/> from BANQUET where BANQUET_NUM = 
+	(select BANQUET_NUM from BANQUETHALL_RESERVATION where BH_RESERVATION_NUM = #{value})
+</select>
+
+<update id="banquetModify" parameterType="banquet">
+	update BANQUET set BANQUET_TYPE = #{banquetType}, BANQUET_PURPOSE = #{banquetPurpose}, 
+	BANQUET_REQUEST = #{banquetRequest}, BANQUET_CHARGE = #{banquetCharge} where BANQUET_NUM = #{banquetNum}
+</update>
+
+<delete id="banquetDelete" parameterType="Long">
+	delete from BANQUET where BANQUET_NUM = #{value}
+</delete>
+</mapper>

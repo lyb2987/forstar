@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.counseling.Counseling_Mapper">
+
+<sql id="counselingBasecols">
+	COUNSELING_NUM, MEMBER_NUM, EMPLOYEE_NUM, COUNSELING_SUBJECT, COUNSELING_DATE, COUNSELING_TYPE, COUNSELING_PURPOSE, COUNSELING_CONTENT, 
+	COUNSELING_STATUS, COUNSELING_UNIQUENESS
+</sql>
+
+<insert id="counselingInsert" parameterType="counseling">
+	insert into COUNSELING(<include refid="counselingBasecols" />)
+	values(COUNSELING_SEQ.nextval, #{memberNum}, null, #{counselingSubject}, #{counselingDate}, #{counselingType}, #{counselingPurpose},
+	#{counselingContent}, #{counselingStatus},  #{counselingUniqueness})
+</insert>
+
+<select id="counselingSelect" parameterType="sePage" resultType="counseling">
+	select *
+	from(select rownum rn, <include refid="counselingBasecols" />
+		from (select <include refid="counselingBasecols" />
+				from COUNSELING
+				<trim prefix="where" prefixOverrides="AND | OR">
+					<if test="selectNum != null">
+						COUNSELING_NUM = #{selectNum}
+					</if>
+					<if test="memberNum != null">
+						and MEMBER_NUM = #{memberNum}
+					</if>
+					<if test="category != null">
+						and COUNSELING_PURPOSE = #{category}
+					</if>
+					<if test="status != null">
+						and COUNSELING_STATUS = #{status}
+					</if>
+				</trim>
+				order by COUNSELING_NUM desc))
+	where rn between #{startPage} and #{endPage}
+</select>
+
+
+<select id="counselingCount" parameterType="sePage" resultType="int">
+	select count(*) from COUNSELING
+	<trim prefix="where" prefixOverrides="AND | OR">
+		<if test="memberNum != null">
+			MEMBER_NUM = #{memberNum}
+		</if>
+		<if test="category != null">
+			and COUNSELING_PURPOSE = #{category}
+		</if>
+		<if test="status != null">
+			and COUNSELING_STATUS = #{status}
+		</if>
+	</trim>
+</select>
+
+<update id="counselingOngoingModify" parameterType="counseling">
+	update COUNSELING set COUNSELING_STATUS = #{counselingStatus}, EMPLOYEE_NUM = #{employeeNum} where COUNSELING_NUM = #{counselingNum}
+</update>
+
+<update id="counselingCompleModify"  parameterType="counseling">
+	update COUNSELING set COUNSELING_STATUS = #{counselingStatus}, COUNSELING_CONTENT = #{counselingContent}, 
+	COUNSELING_UNIQUENESS = #{counselingUniqueness}
+	where COUNSELING_NUM = #{counselingNum}
+</update>
+
+<update id="counselingCancleModify" parameterType="counseling">
+	update COUNSELING set COUNSELING_STATUS = #{counselingStatus}, EMPLOYEE_NUM = #{employeeNum, jdbcType=VARCHAR} where COUNSELING_NUM = #{counselingNum}
+</update>
+
+<update id="counselingReserveCancleModify" parameterType="counseling">
+	update COUNSELING set COUNSELING_STATUS = #{counselingStatus} where COUNSELING_NUM = #{counselingNum}
+</update>
+
+<update id="counselingReserveModify" parameterType="counseling">
+	update COUNSELING set COUNSELING_STATUS = #{counselingStatus} where COUNSELING_NUM = #{counselingNum}
+</update>
+
+<delete id="counselingDelete" parameterType="Long">
+	delete from COUNSELING where COUNSELING_NUM = #{value}
+</delete>
+
+<select id="memberNumSelect" parameterType="Long" resultType="int">
+	select MEMBER_NUM from COUNSELING where COUNSELING_NUM = #{counselingNum}
+</select>
+
+<update id="counselingReservationCompleModify" parameterType="counseling">
+	update COUNSELING set BH_RESERVATION_NUM = #{bHReservationNum}, COUNSELING_STATUS = #{counselingStatus} where COUNSELING_NUM = #{counselingNum}
+</update>
+
+<select id="counselingSelectByBHRNum" parameterType="Long" resultType="counseling">
+	select <include refid="counselingBasecols"/> from COUNSELING where BH_RESERVATION_NUM = #{value}
+</select>
+
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       ">
+	
+	<bean id="memberDMLRepository" class = "repository.member.MemberDMLRepository" />
+	<bean id="loginRepository" class = "repository.member.LoginRepository" />
+	<bean id="memberRepository" class = "repository.member.MemberRepository" />
+	<bean id="memberJoinService" class = "service.member.MemberJoinService"/>
+	<bean id="authService" class = "service.member.AuthService"/>
+	<bean id="memberListService" class = "service.member.MemberListService"/>
+	<bean id="memberDetailService" class = "service.member.MemberDetailService"/>
+	<bean id="memberModifyService" class = "service.member.MemberModifyService"/>
+	<bean id="memberDeleteSevice" class = "service.member.MemberDeleteSevice"/>
+	
+</beans>

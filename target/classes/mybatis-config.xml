@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		
+		<setting value="false" name="cacheEnabled"/>
+		<setting value="true" name="useGeneratedKeys"/>
+		<setting value="true" name="mapUnderscoreToCamelCase"/>
+		<setting value="PARTIAL" name="autoMappingBehavior"/>
+		 
+	</settings>
+	<typeAliases>
+		<typeAlias type="model.InquiryDTO" alias="inquiry"/>
+		<typeAlias type="model.CounselingDTO" alias="counseling"/>
+		<typeAlias type="model.BanquetDTO" alias="banquet"/>
+		<typeAlias type="model.StartEndPageDTO" alias="sePage"/>
+		<typeAlias type="model.RentDTO" alias="rent"/>
+		<typeAlias type="operatorModel.RentDateTimeDTO" alias="rentDateTime"/>
+		<typeAlias type="command.BanquetCommand" alias="banquetC"/>	
+		<typeAlias type="command.RentCommand" alias="rentC"/>
+		<typeAlias type="model.BHReservationDTO" alias="bhreservation"/>
+		<typeAlias type="model.EmployeeDTO" alias="employee"/>
+		<typeAlias type="model.BEDTO" alias="be"/>
+		<typeAlias type="operatorModel.BEDetailDTO" alias="beDetail"/>
+		<typeAlias type="model.BERequestDTO" alias="bERequest"/>
+		<typeAlias type="model.MenuDTO" alias="menu"/>
+		<typeAlias type="model.FABDTO" alias="fab"/>
+		<typeAlias type="operatorModel.TotalReservationDTO" alias="totalReservation"/>
+		<typeAlias type="operatorModel.BERequestDetailDTO" alias="bERequestDetail"/>
+		<typeAlias type="operatorModel.TestReservationDTO" alias="testReservation"/>
+		<typeAlias type="model.DTO.RoomAdminClassDTO" alias = "racdto" />
+		<typeAlias type="model.DTO.RoomInfoDTO" alias = "raidto" />
+		<typeAlias type="model.DTO.LaundryDTO" alias = "lddto" />
+		<typeAlias type="model.DTO.RoomReserDTO" alias = "rrdto" />
+		<typeAlias type="model.DTO.CleaningDTO" alias = "cndto" />
+		<typeAlias type="model.DTO.RoomOrderDTO" alias = "rodto" />
+		<typeAlias type="model.DTO.AddPayMentDTO" alias = "apmdto" />
+		<typeAlias type="model.DTO.OpenRoomDTO" alias = "ordto" />
+		<typeAlias type="operatorModel.ReservationChargeDTO" alias="rc"/>
+		<typeAlias type="model.BHReviewDTO" alias="bHReview"/>
+		<typeAlias type="model.TotalPaymentDTO" alias="tp"/>
+		<typeAlias type="model.BHPaymentDTO" alias="bhp"/>
+		<typeAlias type="model.DTO.MemberDTO" alias="memdto"/>
+		<typeAlias type="model.DTO.AddPayMentMainDTO" alias="addpaydto"/>
+	</typeAliases>  
+</configuration>

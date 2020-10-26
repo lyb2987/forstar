@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.fab.FAB_Mapper">
+	<sql id="fabBasecols">
+		FAB_NUM, BH_RESERVATION_NUM, MEMBER_NUM, MENU_NAME, RESTAURANT_NUM, FAB_DATE, FAB_NOP, FAB_CHARGE
+	</sql>
+
+	<insert id="fabInsert" parameterType="fab">
+		insert into FAB(<include refid="fabBasecols"/>) values(FAB_SEQ.nextval, #{bHReservationNum}, 
+		#{memberNum}, #{menuName}, #{restaurantNum}, sysdate, #{fabNoP}, #{fabCharge})
+	</insert>
+	
+	<select id="fabSelect" parameterType="Long" resultType="fab">
+		select <include refid="fabBasecols"/> from FAB where BH_RESERVATION_NUM = #{bHReservationNum}
+	</select>
+	
+	<update id="fabModify" parameterType="fab">
+		update FAB set MENU_NAME = #{menuName}, RESTAURANT_NUM = #{restaurantNum}, FAB_NOP = #{fabNoP}, FAB_CHARGE = #{fabCharge} where FAB_NUM = #{fabNum}
+	</update>
+	
+	<delete id="fabDelete" parameterType="Long">
+		delete from FAB where FAB_NUM = #{value}
+	</delete>
+</mapper>

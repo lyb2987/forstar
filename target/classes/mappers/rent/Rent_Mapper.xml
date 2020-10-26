@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.rent.Rent_Mapper">
+	
+	<sql id="rentBasecols">
+		RENT_NUM, RENT_BANQUETHALL, RENT_DATE, RENT_TIME, RENT_CHARGE
+	</sql>
+
+	<select id="rentDateChange" parameterType="rentDateTime" resultType="String">
+		select RENT_BANQUETHALL from RENT where 
+		to_date(#{rentDate}, 'YYYYMMDDHH24MISS') between RENT_DATE and RENT_TIME 
+		or to_date(#{rentTime}, 'YYYYMMDDHH24MISS') between RENT_DATE and RENT_TIME
+	</select>
+	
+	<insert id="rentInsert" parameterType="rent">
+		insert into RENT(<include refid="rentBasecols" />)
+		values(RENT_SEQ.nextval, #{rentBanquetHall}, #{rentDate}, #{rentTime}, #{rentCharge})
+	</insert>
+	
+	<select id="rentNumSelect" parameterType="rentC" resultType="int">
+		select RENT_NUM from RENT where RENT_BANQUETHALL = #{rentBanquetHall} and RENT_DATE = #{rentDate} and RENT_TIME = #{rentTime}
+	</select>
+	
+	<delete id="rentDelete" parameterType="Long">
+		delete from RENT where RENT_NUM = #{value}
+	</delete>
+</mapper>

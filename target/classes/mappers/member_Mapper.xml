@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.member_Mapper">
+<cache />
+	<sql id="basecolumn">
+	MEMBER_NUM, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_BIRTH, MEMBER_GENDER,MEMBER_ADDR, MEMBER_TEL, MEMBER_EMAIL, MEMBER_REGISTER, MEMBER_POINT 
+	</sql>
+	
+	<insert id="insertMember" parameterType="model.DTO.MemberDTO" >
+		insert into member ( <include refid="basecolumn" />  )
+		values(#{memberNum},#{memberId},#{memberPw},#{memberName},#{memberBirth},
+		#{memberGender},#{memberAddr},#{memberTel},#{memberEmail},sysdate,#{memberPoint})
+	</insert>
+	
+	<resultMap type="memdto" id="baseMember" >
+		<id column="MEMBER_NUM" jdbcType="BIGINT" property="memberNum"/>   
+		<result column="MEMBER_ID" jdbcType="VARCHAR" property="memberId"/> 
+		<result column="MEMBER_PW" jdbcType="VARCHAR" property="memberPw"/>
+		<result column="MEMBER_NAME" jdbcType="VARCHAR" property="memberName"/>
+		<result column="MEMBER_BIRTH" jdbcType="TIMESTAMP" property="memberBirth"/>
+		<result column="MEMBER_GENDER" jdbcType="VARCHAR" property="memberGender"/>
+		<result column="MEMBER_ADDR" jdbcType="VARCHAR" property="memberAddr"/>
+		<result column="MEMBER_TEL" jdbcType="VARCHAR" property="memberTel"/>
+		<result column="MEMBER_EMAIL" jdbcType="VARCHAR" property="memberEmail"/>
+		<result column="MEMBER_REGISTER" jdbcType="TIMESTAMP" property="memberRegist"/>
+		<result column="MEMBER_POINT" jdbcType="BIGINT" property="memberPoint"/>
+	</resultMap>
+	
+	<select id="memberList" resultMap="baseMember">
+		select * from member
+	</select>
+	
+	<select id="memberCount" resultType="int">
+		select count(*) from member
+	</select>
+	
+	<select id="memberNumCheck" parameterType="Long" resultType="int">
+		select count(*) from MEMBER where MEMBER_NUM = #{value}
+	</select>
+	
+	<select id="memberNumSelectById" parameterType="memdto" resultType="int">
+		select MEMBER_NUM from MEMBER where MEMBER_ID = #{memberId}
+	</select>
+</mapper>

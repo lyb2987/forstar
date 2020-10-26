@@ -1,0 +1,253 @@
+@charset "UTF-8";
+
+.contain .container {
+    width: 1200px;
+    min-height: 500px;
+    margin: auto;
+    zoom: 1;
+    margin: 0 auto 100px auto;
+}
+
+.adminCtn {
+    width: 1200px;
+    margin: auto;
+}
+
+.joinBody .contain .contents {
+    float: none !important;
+    width: auto !important;
+    margin: auto !important;
+}
+
+.contents .location {
+    float: right;
+    height: 20px;
+    padding: 9px 0 0 0;
+    margin: 0 0 -30px 0;
+    overflow: hidden;
+    z-index: 9;
+    position: relative;
+}
+
+.rgt {
+    right: 10px;
+}
+
+.contents .location .list {
+    display: block;
+    font-size: 11px;
+    background: url(../images/Login/locaton.gif) no-repeat 0 1px;
+    line-height: 12px;
+    padding: 0 0 0 17px;
+}
+
+.contents .location .list .crPosit {
+    position: absolute;
+    left: -9999%;
+}
+
+.contents .location .list strong {
+    color: #865009;
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+.adminBox.contents .headTit {
+    border-bottom: #432c10 solid 5px;
+    height: 47px;
+    width: 1200px;
+    margin: 0 auto;
+    margin-top : 30px;
+    margin-bottom: 20px;
+}
+
+.contents .headTit {
+    position: relative;
+    z-index: 8;
+    height: 47px;
+    border-bottom: #432c10 solid 5px;
+    width: 1200px;
+}
+
+.adminBox.contents .headTit .tit {
+    background: url(../images/Admin/adminPageTit.png) no-repeat;
+    width: 467px;
+    height: 47px;
+    line-height: 200px;
+    overflow: hidden;
+}
+
+
+.lnbArea {
+    float: left;
+}
+
+.lnbMenu {
+    width: 216px;
+    border: #e9dab8 solid 1px;
+    background: #f1e3c4;
+    padding: 23px;
+    margin: 0 0 30px 0;
+}
+
+.lnbArea .lnbMenu>.tit {
+    margin: 0 0 29px 0;
+    height: 53px;
+    background: url(../images/Admin/adminPageSideTit.png);
+    display: block;
+    text-indent: -9999%;
+    overflow: hidden;
+}
+
+.lnbMenu li {
+    margin: 0 0 26px 0;
+}
+
+.lnbMenu li a {
+    background: #9CC;
+    height: 25px;
+    display: block;
+    text-indent: -9999%;
+    overflow: hidden;
+}
+
+.lnbAreaAcmd .lnbMenu .menu .m1>a {
+    background: url(../images/Admin/InbAcmdInqueryAndCounseling.png) no-repeat;
+}
+
+.lnbAreaAcmd .lnbMenu .menu .m2>a {
+    background: url(../images/Admin/InbAcmdRoom.png) no-repeat;
+}
+
+.lnbAreaAcmd .lnbMenu .menu .m3>a {
+    background: url(../images/Admin/InbAcmdRestaurant.png) no-repeat;
+}
+
+.lnbAreaAcmd .lnbMenu .menu .m4>a {
+    background: url(../images/Admin/InbAcmdLifeStyle.png) no-repeat;
+}
+
+.lnbAreaAcmd .lnbMenu .menu .m5>a {
+    background: url(../images/Admin/InbAcmdBanquet.png) no-repeat;
+}
+
+.lnbAreaAcmd .lnbMenu .menu .m6>a {
+    background: url(../images/Admin/InbAcmdEmployee.png) no-repeat;
+}
+
+
+.lnbArea .lnbMenu .sMenu {
+    padding: 13px 0 0 0;
+    margin: 0 0 24px 0;
+    background: url(../images/Admin/lnbMenuDotLine.gif) no-repeat;
+}
+
+.lnbMenu li li {
+    margin: 0;
+}
+
+.lnbArea .lnbMenu .sMenu li a {
+    height: 21px;
+    margin: 0 0 1px 0;
+    text-indent: -9999%;
+    overflow: hidden;
+}
+
+
+.lnbAreaAcmd .lnbMenu .sMenu1 .s1 a {
+    background: url(../images/Admin/InbSmAcmdInqueryList.png) no-repeat;
+}
+
+.lnbAreaAcmd .lnbMenu .sMenu1 .s2 a {
+    background: url(../images/Admin/InbSmAcmdCounselingList.png) no-repeat;
+}
+
+
+.lnbAreaAcmd .lnbMenu .sMenu2 .s1 a {
+    background: url(../images/Admin/InbSmAcmdRoomReserList.png) no-repeat;
+}
+
+.lnbAreaAcmd .lnbMenu .sMenu2 .s2 a {
+    background: url(../images/Admin/InbSmAcmdRoomList.png) no-repeat;
+}
+
+
+.lnbAreaAcmd .lnbMenu .sMenu2 .s3 a {
+    background: url(../images/Admin/InbSmAcmdRoomCleaning.png) no-repeat;
+}
+
+
+.lnbAreaAcmd .lnbMenu .sMenu2 .s4 a {
+    background: url(../images/Admin/InbSmAcmdRoomLaundry.png) no-repeat;
+}
+
+
+.lnbAreaAcmd .lnbMenu .sMenu2 .s5 a {
+    background: url(../images/Admin/InbSmAcmdRoomClass.png) no-repeat;
+}
+
+
+
+.lnbAreaAcmd .lnbMenu .sMenu3 .s1 a {
+    background: url(../images/Admin/InbSmAcmdTemporary.png) no-repeat;
+}
+.lnbAreaAcmd .lnbMenu .sMenu3 .s2 a {
+    background: url(../images/Admin/InbSmAcmdTemporary.png) no-repeat;
+}
+.lnbAreaAcmd .lnbMenu .sMenu3 .s3 a {
+    background: url(../images/Admin/InbSmAcmdTemporary.png) no-repeat;
+}
+.lnbAreaAcmd .lnbMenu .sMenu3 .s4 a {
+    background: url(../images/Admin/InbSmAcmdTemporary.png) no-repeat;
+}
+.lnbAreaAcmd .lnbMenu .sMenu3 .s5 a {
+    background: url(../images/Admin/InbSmAcmdTemporary.png) no-repeat;
+}
+
+
+.lnbAreaAcmd .lnbMenu .sMenu4 .s1 a {
+    background: url(../images/Admin/InbSmAcmdTemporary.png) no-repeat;
+}
+.lnbAreaAcmd .lnbMenu .sMenu4 .s2 a {
+    background: url(../images/Admin/InbSmAcmdTemporary.png) no-repeat;
+}
+.lnbAreaAcmd .lnbMenu .sMenu4 .s3 a {
+    background: url(../images/Admin/InbSmAcmdTemporary.png) no-repeat;
+}
+.lnbAreaAcmd .lnbMenu .sMenu4 .s4 a {
+    background: url(../images/Admin/InbSmAcmdTemporary.png) no-repeat;
+}
+.lnbAreaAcmd .lnbMenu .sMenu4 .s5 a {
+    background: url(../images/Admin/InbSmAcmdTemporary.png) no-repeat;
+}
+
+
+.lnbAreaAcmd .lnbMenu .sMenu5 .s1 a {
+    background: url(../images/Admin/InbSmAcmdBanquetHallReservationView.png) no-repeat;
+}
+.lnbAreaAcmd .lnbMenu .sMenu5 .s2 a {
+    background: url(../images/Admin/InbSmAcmdBanquetHallReviewList.png) no-repeat;
+}
+
+
+.lnbAreaAcmd .lnbMenu .sMenu6 .s1 a {
+    background: url(../images/Admin/InbSmAcmdTemporary.png) no-repeat;
+}
+.lnbAreaAcmd .lnbMenu .sMenu6 .s2 a {
+    background: url(../images/Admin/InbSmAcmdTemporary.png) no-repeat;
+}
+.lnbAreaAcmd .lnbMenu .sMenu6 .s3 a {
+    background: url(../images/Admin/InbSmAcmdTemporary.png) no-repeat;
+}
+.lnbAreaAcmd .lnbMenu .sMenu6 .s4 a {
+    background: url(../images/Admin/InbSmAcmdTemporary.png) no-repeat;
+}
+.lnbAreaAcmd .lnbMenu .sMenu6 .s5 a {
+    background: url(../images/Admin/InbSmAcmdTemporary.png) no-repeat;
+}
+
+.adminContent {
+	margin-left : 300px;
+    width: 866px;
+    height: 1100px;
+}

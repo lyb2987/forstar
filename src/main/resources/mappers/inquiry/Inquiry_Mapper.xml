@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.inquiry.Inquiry_Mapper">
+<sql id="inquiryBasecols">
+	INQUIRY_NUM, MEMBER_NUM, EMPLOYEE_NUM, INQUIRY_SUBJECT, INQUIRY_TYPE, INQUIRY_CONTENT, INQUIRY_DATE, INQUIRY_ANSWER, INQUIRY_STATUS 
+</sql>
+
+<insert id="inquiryInsert" parameterType="inquiry">
+	insert into INQUIRY (<include refid="inquiryBasecols" />)
+	values(INQUIRY_SEQ.nextval, #{memberNum}, #{employeeNum},#{inquirySubject},#{inquiryType},
+	#{inquiryContent}, sysdate, null, #{inquiryStatus})
+</insert>
+
+<select id="getInquiryCount" resultType="int">
+	select count(*) from INQUIRY
+</select>
+
+<select id="inquiryListSelect" parameterType="sePage" resultType="inquiry">
+	select *
+	from(select rownum rn, <include refid="inquiryBasecols" />
+		from (select <include refid="inquiryBasecols" />
+				from INQUIRY
+				<trim prefix="where" prefixOverrides="AND | OR">
+					<if test="selectNum != null">
+						INQUIRY_NUM = #{selectNum}
+					</if>
+					<if test="memberNum != null">
+						and MEMBER_NUM = #{memberNum}
+					</if>
+				</trim>
+				order by INQUIRY_NUM desc))
+	where rn between #{startPage} and #{endPage}
+</select>
+
+<delete id="inquiryDelete" parameterType="Integer">
+	delete from INQUIRY where INQUIRY_NUM = #{value}
+</delete>
+
+<update id="inquiryModify" parameterType="inquiry">
+	update INQUIRY set INQUIRY_CONTENT = #{inquiryContent} where INQUIRY_NUM = #{inquiryNum}
+</update>
+
+</mapper>

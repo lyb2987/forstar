@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.bhreservation.BHReservation_Mapper">
+	
+	<sql id="bhreservationBasecols">
+		BH_RESERVATION_NUM, MEMBER_NUM, BANQUET_NUM, RENT_NUM, RESERVATION_STATUS, RESERVATION_DATE, RESERVATION_CHARGE
+	</sql>
+	
+	<insert id="bHReservationInsert" parameterType="bhreservation">
+		insert into BANQUETHALL_RESERVATION(<include refid="bhreservationBasecols" />)
+		values(BH_RESERVATION_SEQ.nextval, #{memberNum}, #{banquetNum}, #{rentNum}, #{reservationStatus}, sysdate, 
+		(select BANQUET_CHARGE from BANQUET where BANQUET_NUM = #{banquetNum})+(select RENT_CHARGE from RENT where RENT_NUM = #{rentNum}))
+	</insert>
+	
+	<select id="bHReservationNumSelect" parameterType="bhreservation" resultType="int">
+		select BH_RESERVATION_NUM FROM BANQUETHALL_RESERVATION where  MEMBER_NUM = #{memberNum} 
+		and BANQUET_NUM = #{banquetNum} and RENT_NUM = #{rentNum}
+	</select>
+	
+	<update id="bHReservationChargeUpdate" parameterType="bhreservation">
+		update BANQUETHALL_RESERVATION set RESERVATION_CHARGE = (RESERVATION_CHARGE + #{reservationCharge}) 
+		where BH_RESERVATION_NUM = #{bHReservationNum} 
+	</update>
+	
+	
+	
+	<resultMap type="rent" id="rentMap">
+		<result column="RENT_NUM" property="rentNum"/>
+		<result column="RENT_BANQUETHALL" property="rentBanquetHall"/>
+		<result column="RENT_DATE" property="rentDate"/>
+		<result column="RENT_TIME" property="rentTime"/>
+		<result column="RENT_CHARGE" property="rentCharge"/>
+	</resultMap>
+
+	<resultMap type="banquet" id="banquetMap">
+		<result column="BANQUET_NUM" property="banquetNum"/>
+		<result column="BANQUET_TYPE" property="banquetType"/>
+		<result column="BANQUET_PURPOSE" property="banquetPurpose"/>
+		<result column="BANQUET_REQUEST" property="banquetRequest"/>
+		<result column="BANQUET_CHARGE" property="banquetCharge"/>
+	</resultMap>
+	
+	<resultMap type="fab" id="fabMap">
+		<result column="FAB_NUM" property="fabNum"/>
+		<result column="BH_RESERVATION_NUM" property="bHReservationNum"/>
+		<result column="MEMBER_NUM" property="memberNum"/>
+		<result column="MENU_NAME" property="menuName"/>
+		<result column="RESTAURANT_NUM" property="restaurantNum"/>
+		<result column="FAB_DATE" property="fabDate"/>
+		<result column="FAB_NOP" property="fabNoP"/>
+		<result column="FAB_CHARGE" property="fabCharge"/>
+	</resultMap>
+
+	<resultMap type="employee" id="employeeMap">
+		<result column="EMPLOYEE_NUM" property="employeeNum"/>
+		<result column="DEPARTMENT_NUM" property="departmentNum"/>
+		<result column="POSITION_NUM" property="positionNum"/>
+		<result column="EMPLOYEE_EMAIL" property="employeeEmail"/>
+		<result column="EMPLOYEE_PHONE" property="employeePhone"/>
+		<result column="EMPLOYEE_PHONE2" property="employeePhone2"/>
+		<result column="EMPLOYEE_PAY" property="employeePay"/>
+		<result column="EMPLOYEE_BANK" property="employeeBank"/>
+		<result column="EMPLOYEE_BANKNUM" property="employeeBankNum"/>
+		<result column="EMPLOYEE_JOINDAY" property="employeeJoinDay"/>
+		<result column="EMPLOYEE_NAME" property="employeeName"/>
+	</resultMap>
+	
+	<resultMap type="be" id="beMap">
+		<result column="BE_NUM" property="bENum"/>
+		<result column="EMPLOYEE_NUM" property="employeeNum"/>
+		<result column="BE_CHARGE" property="bECharge"/>
+		<result column="BE_DUTIES" property="bEDuties"/>
+	</resultMap>
+	
+	<resultMap type="bERequestDetail" id="bERequestDetailMap">
+		<result column="BE_REQUEST_NUM" property="bERequestNum"/>
+		<result column="BH_RESERVATION_NUM" property="bHReservationNum"/>
+		<result column="BE_NUM" property="bENum"/>
+		<result column="EMPLOYEE_NUM" property="employeeNum"/>
+		<result column="MEMBER_NUM" property="memberNum"/>
+		<result column="BE_REQUEST_DATE" property="bERequestDate"/>
+		<result column="BE_REQUEST_TIME" property="bERequestTime"/>
+		<association property="be" resultMap="beMap"/>
+		<association property="employee" resultMap="employeeMap"/>
+	</resultMap>
+	
+	<resultMap type="totalReservation" id="totalReservationMap">
+		<result column="BH_RESERVATION_NUM" property="bHReservationNum"/>
+		<result column="MEMBER_NUM" property="memberNum"/>
+		<result column="BANQUET_NUM" property="banquetNum"/>
+		<result column="RENT_NUM" property="rentNum"/>
+		<result column="RESERVATION_STATUS" property="reservationStatus"/>
+		<result column="RESERVATION_DATE" property="reservationDate"/>
+		<result column="RESERVATION_CHARGE" property="reservationCharge"/>
+		<association property="banquet" resultMap="banquetMap"/>
+		<association property="rent" resultMap="rentMap"/>
+		<association property="fab" resultMap="fabMap"/>
+		<collection property="bERequestDetail" resultMap="bERequestDetailMap"/>
+	</resultMap>
+	
+	<select id="totalReservationSelect" parameterType="Long" resultMap="totalReservationMap">
+		select 
+		    bh.BH_RESERVATION_NUM as BH_RESERVATION_NUM, bh.MEMBER_NUM as MEMBER_NUM, b.BANQUET_NUM as BANQUET_NUM, 
+		    r.RENT_NUM as RENT_NUM, RESERVATION_STATUS, RESERVATION_DATE, RESERVATION_CHARGE,
+		    RENT_BANQUETHALL, RENT_DATE, RENT_TIME, RENT_CHARGE,
+		    BANQUET_TYPE, BANQUET_PURPOSE, BANQUET_REQUEST, BANQUET_CHARGE,
+		    FAB_NUM, MENU_NAME, RESTAURANT_NUM, FAB_DATE, FAB_NOP, FAB_CHARGE,
+		    BE_REQUEST_NUM, ber.BE_NUM, ber.EMPLOYEE_NUM as EMPLOYEE_NUM, BE_REQUEST_DATE, BE_REQUEST_TIME,
+		    BE_CHARGE, BE_DUTIES,
+		    DEPARTMENT_NUM, POSITION_NUM, EMPLOYEE_EMAIL, EMPLOYEE_PHONE, 
+		    EMPLOYEE_PHONE2, EMPLOYEE_PAY, EMPLOYEE_BANK, EMPLOYEE_BANKNUM, EMPLOYEE_JOINDAY, EMPLOYEE_NAME
+		from BANQUETHALL_RESERVATION bh 
+		    join BANQUET b on bh.BANQUET_NUM = b.BANQUET_NUM
+		    join RENT r on bh.RENT_NUM = r.RENT_NUM
+		    left outer join FAB fab on bh.BH_RESERVATION_NUM = fab.BH_RESERVATION_NUM
+		    left outer join BE_REQUEST ber on bh.BH_RESERVATION_NUM = ber.BH_RESERVATION_NUM
+		    left outer join BANQUET_EMPLOYEE be on ber.BE_NUM = be.EMPLOYEE_NUM
+		    left outer join EMPLOYEE emp on be.BE_NUM = emp.EMPLOYEE_NUM
+		where bh.BH_RESERVATION_NUM = #{value}
+	</select>
+	
+	<select id="bHReservationListSelect" parameterType="sePage" resultType="bhreservation">
+		select *
+		from(select rownum rn, <include refid="bhreservationBasecols" />
+			from (select <include refid="bhreservationBasecols" />
+					from BANQUETHALL_RESERVATION
+					<trim prefix="where" prefixOverrides="AND | OR">
+						<if test="selectNum != null">
+							BH_RESERVATION_NUM = #{selectNum}
+						</if>
+						<if test="memberNum != null">
+							and MEMBER_NUM = #{memberNum}
+						</if>
+					</trim>
+					order by BH_RESERVATION_NUM desc))
+		where rn between #{startPage} and #{endPage}
+	</select>
+	
+	<select id="bHReservationCountSelect" resultType="int">
+		select count(*) from BANQUETHALL_RESERVATION
+	</select>
+	
+	
+	<update id="bHReservationModifyCharge" parameterType="rc">
+		update BANQUETHALL_RESERVATION set RESERVATION_CHARGE = (RESERVATION_CHARGE + #{charge}) where BH_RESERVATION_NUM = #{bHReservationNum} 
+	</update>
+	
+	<delete id="bHReservationDelete" parameterType="Long">
+		delete from BANQUETHALL_RESERVATION where BH_RESERVATION_NUM = #{value}
+	</delete>
+	
+	<update id="bHReservationStatusUpdate" parameterType="bhreservation">
+		update BANQUETHALL_RESERVATION set RESERVATION_STATUS = #{reservationStatus} where BH_RESERVATION_NUM = #{bHReservationNum}
+	</update>
+	
+</mapper>

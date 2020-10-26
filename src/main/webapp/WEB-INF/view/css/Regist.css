@@ -1,0 +1,276 @@
+@charset "UTF-8";
+
+.contain .container {
+    width: 1200px;
+    min-height: 500px;
+    margin: auto;
+    zoom: 1;
+    margin: 0 auto 100px auto;
+}
+
+.ctnJoin {
+    width: 866px;
+    margin: auto;
+}
+
+.joinBody .contain .contents {
+    float: none !important;
+    width: auto !important;
+    margin: auto !important;
+}
+
+.contents .location {
+    float: right;
+    height: 20px;
+    padding: 9px 0 0 0;
+    margin: 0 0 -30px 0;
+    overflow: hidden;
+    z-index: 9;
+    position: relative;
+}
+
+.rgt {
+    right: 10px;
+}
+
+.contents .location .list {
+    display: block;
+    font-size: 11px;
+    background: url(../images/Login/locaton.gif) no-repeat 0 1px;
+    line-height: 12px;
+    padding: 0 0 0 17px;
+}
+
+.contents .location .list .crPosit {
+    position: absolute;
+    left: -9999%;
+}
+
+.contents .location .list strong {
+    color: #865009;
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+.agreeBox.contents .headTit {
+    border-bottom: #432c10 solid 5px;
+    height: 47px;
+    width: 866px;
+    margin: 0 auto;
+    margin-top : 30px;
+}
+
+.contents .headTit {
+    position: relative;
+    z-index: 8;
+    height: 47px;
+    border-bottom: #432c10 solid 5px;
+    width: 866px;
+}
+
+.agreeBox.contents .headTit .tit {
+    background: url(../images/Regist/RegistTit.png) no-repeat;
+    width: 467px;
+    height: 47px;
+    line-height: 200px;
+    overflow: hidden;
+}
+
+.agreeBox .top {
+    background: url(../images/Regist/RegistTop.png) no-repeat;
+    width: 650px;
+    height: 144px;
+    margin: auto;
+    margin-right: 187px;
+}
+
+.agreeBox .top .logo, .agreeBox .top .info {
+    position: absolute;
+    left: -9999%;
+}
+
+.logo {
+    margin-left: 14%;
+}
+
+
+.ctnJoinStep1 .hTit1 {
+    background: url(../images/Regist/joinStep1Tit1.gif) no-repeat;
+}
+
+.ctnJoinStep1 .hTit {
+    margin: 0 0 23px;
+    height: 40px;
+    text-indent: -9999%;
+    overflow: hidden;
+}
+
+.ctnJoinStep1 .ctnBox {
+    background: #FFF;
+    margin: 20px 0 0px 0;
+    padding: 0px;
+}
+
+.ctnJoinStep1 .hTitS {
+    height: 30px;
+    margin: 0 0 0px;
+}
+
+.hTitS {
+    overflow: hidden;
+    margin: 0 0 5px 0;
+}
+
+.ctnJoinStep1 .hTitS .tit {
+    float: left;
+    font-weight: bold;
+    font-size: 12px;
+    color: #444444;
+    padding-top: 5px;
+}
+
+.ctnJoinStep1 .hTitS .tit {
+    float: left;
+    padding: 5px 0 0 0;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.ctnJoinStep1 .policyBox {
+    border: #CCC solid 1px;
+    height: 60px;
+    margin-top: 0;
+    padding: 15px 20px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.policyBox {
+    overflow: hidden;
+    border: 1px solid #eaeaea;
+    background: #fbfbfb;
+    padding: 19px 29px;
+    margin-top: 10px;
+}
+
+.ctnJoinStep1 .policyBox .box, .ctnJoinStep1 .policyBox .box .table_info .box {
+    color: #888!important;
+}
+
+.buttonwrapA {
+    text-align: center;
+    display: block;
+    margin: 10px;
+}
+
+.buttonstyleA {
+    padding: 10px 20px;
+    background: #393124;
+    color: #fff;
+    font-weight: bold;
+    font-family: dotum, '돋움', sans-serif;
+    text-align: center;
+    font-size: 11pt;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+
+.checkLabel{
+	margin-top : 5px;
+	margin-left : 5px;
+}
+
+.agreeBox .top2 {
+    background: url(../images/Regist/RegistStepTop.png) no-repeat;
+    width: 650px;
+    height: 144px;
+    margin: auto;
+    margin-right: 187px;
+}
+
+.ctnJoinStep1 .hTit2 {
+    background: url(../images/Regist/joinStep2Tit1.gif) no-repeat;
+}
+
+
+.joinTable {
+    margin: 20px 0px 0px 0px;
+    border: none;
+    border-top: #cdcbbe solid 1px;
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+
+.joinTable th, .joinTable td {
+    border: none;
+    padding: 6px 13px;
+    text-align: left;
+    line-height: 22px;
+    border-bottom: #eceae1 solid 1px;
+    color: #333333;
+}
+
+.joinTable .th2{
+    border: none;
+    padding: 6px 13px;
+    text-align: center;
+    line-height: 22px;
+    border-bottom: #eceae1 solid 1px;
+    color: #666;
+    font-weight: bold;
+}
+
+.joinTable .empNum{
+	display: none;
+}
+
+.joinTable th {
+    color: #666;
+    background: #faf9f4;
+    text-align: center;
+    font-weight: bold;
+}
+
+.joinBtnDiv{
+	margin-bottom: 25px; 
+}
+
+.joinTable input[type=text], input[type=password]{
+	width: 200px;
+	height: 20px;
+	font-size: 15px;
+}
+
+.joinTable input[type=date]{
+	width: 180px;
+	height: 20px;
+	font-size: 12px;
+}
+
+.agreeBox.contents .headTit2 .tit {
+    background: url(../images/Regist/RegistSucessTit.png) no-repeat;
+    width: 467px;
+    height: 47px;
+    line-height: 200px;
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.contents .headTit2 {
+    position: relative;
+    z-index: 8;
+    height: 47px;
+    border-bottom: #432c10 solid 5px;
+    width: 866px;
+}
+
+.agreeBox .top3 {
+    background: url(../images/Regist/RegistSucessTop.png) no-repeat;
+    width: 670px;
+    height: 144px;
+    margin: auto;
+    margin-right: 187px;
+}

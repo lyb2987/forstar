@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.bhreview.BHReview_Mapper">
+
+<sql id="bHReviewBaseColumns">
+	BH_REVIEW_NUM, BH_RESERVATION_NUM, MEMBER_NUM, BH_REVIEW_SUBJECT, BH_REVIEW_SATISFACTION, 
+	BH_REVIEW_CONTENT, BH_REVIEW_IMPROVEMENT, BH_REVIEW_REGISTER
+</sql>
+
+<insert id="bHReviewInsert" parameterType="bHReview">
+	insert into BH_REVIEW(<include refid="bHReviewBaseColumns" />) 
+	values(BE_REVIEW_SEQ.nextval, #{bHReservationNum}, #{memberNum}, #{bHReviewSubject}, 
+	#{bHReviewSatisfaction}, #{bHReviewContent}, #{bHReviewImprovement}, sysdate)
+</insert>
+
+
+<select id="bHReviewListSelect" parameterType="sePage" resultType="bHReview">
+	select *
+	from(select rownum rn, <include refid="bHReviewBaseColumns" />
+		from (select <include refid="bHReviewBaseColumns" />
+				from BH_REVIEW
+				<trim prefix="where" prefixOverrides="AND | OR">
+					<if test="selectNum != null">
+						BH_REVIEW_NUM = #{selectNum}
+					</if>
+					<if test="memberNum != null">
+						and MEMBER_NUM = #{memberNum}
+					</if>
+				</trim>
+				order by BH_REVIEW_NUM desc))
+	where rn between #{startPage} and #{endPage}
+</select>
+
+<select id="getBHReviewCount" resultType="int">
+	select count(*) from BH_REVIEW
+</select>
+
+<update id="bHReviewModify" parameterType="bHReview">
+	update BH_REVIEW set BH_REVIEW_SUBJECT = #{bHReviewSubject}, BH_REVIEW_SATISFACTION = #{bHReviewSatisfaction}, 
+	BH_REVIEW_CONTENT = #{bHReviewContent}, BH_REVIEW_IMPROVEMENT = #{bHReviewImprovement} where BH_REVIEW_NUM = #{bHReviewNum}
+</update>
+
+<delete id="bHReviewDelete" parameterType="Long">
+	delete from BH_REVIEW  where BH_REVIEW_NUM = #{bHReviewNum}
+</delete>
+
+</mapper>

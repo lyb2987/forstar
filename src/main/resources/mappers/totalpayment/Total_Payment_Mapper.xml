@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.totalpayment.TOTAL_PAYMENT_Mapper">
+	<select id="totalPaymentNumCheck" parameterType="Long" resultType="int">
+		select count(*) from TOTAL_PAYMENT where TP_NUM = #{value}
+	</select>
+	
+	<insert id="totalPaymentInsert" parameterType="tp">
+		insert into TOTAL_PAYMENT(TP_NUM, TP_TOTALPRICE) values(#{tpNum}, #{tpTotalPrice})
+	</insert>
+	
+	<select id="totalPaymentSelect" parameterType="Long" resultType="tp">
+		select TP_NUM, TP_TOTALPRICE from TOTAL_PAYMENT where TP_NUM = #{value}
+	</select>
+	
+	<delete id="totalPaymentDelete" parameterType="Long">
+		delete from TOTAL_PAYMENT where TP_NUM = #{value}
+	</delete>
+</mapper>

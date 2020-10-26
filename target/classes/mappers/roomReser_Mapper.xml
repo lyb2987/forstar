@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 	
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="roomReser_Mapper">
+<cache />
+	<!-- 객실예약 -->
+	<sql id="basecolumnReser">
+		ROOM_RESERVATION_NUM,MEMBER_NUM,ROOM_NUM,RESERVATION_STATUS,RESERVATION_DATE,RESERVATION_CHARGE,RESERVATION_START,RESERVATION_END,ROOM_CUSTOM
+	</sql>
+	
+	<!-- 룸서비스 주문 -->
+	<sql id="basecolumnOrder">
+	ORDER_NUM,ROOM_RESERVATION_NUM,MEMBER_NUM,MENU_NAME,RESTAURANT_NUM,ORDER_COUNT,ORDER_ETC
+	</sql>
+	
+	<!-- 추가결제 -->
+	<sql id="basecolumnAddPayMent">
+	ADD_PAYMENT_NUM,ORDER_NUM,ROOM_RESERVATION_NUM,MEMBER_NUM,ADD_PAYMENT_STATUS,ADD_PAYMENT_MEANS,ADD_PAYMENT_CHARGE
+	</sql>
+	
+	<!-- 객실결재 -->
+	<sql id="basecolumnRoomPayMent">
+	ROOM_RESERVATION_NUM,MEMBER_NUM,TP_NUM,ROOM_MEANS,ROOM_CHARGE,ROOM_DATE,ROOM_STATUS
+	</sql>
+	
+	<!-- 객실 결제 -->
+	<insert id="roomPaymentInsert" parameterType="model.DTO.PayMentDTO" >
+	insert into ROOM_PAYMENT ( <include refid="basecolumnRoomPayMent" /> )
+	values(#{roomReserNum}, #{memberNum}, #{tpNum}, #{roomMeans}, #{roomCharge}, #{roomDate}, #{roomStatus})
+</insert>
+	
+	<!-- 객실 예약-->
+	<insert id="roomReserInsert" parameterType="model.DTO.RoomReserDTO" >
+	insert into ROOM_RESERVATION ( <include refid="basecolumnReser" /> )
+	values(#{roomReserNum}, #{memberNum}, #{roomNum}, #{reserStatus}, #{reserDate}, #{reserCharge}, #{reserStart}, #{reserEnd}, #{reserCustom})
+</insert>
+
+<resultMap type="ordto" id="baseBoardMapOpenRoom">
+		<id column="ROOM_NUM" jdbcType="BIGINT" property="roomNum"/>   
+	</resultMap>
+	
+	<!-- 예약가능 객실 리스트 -->
+	<select id="openroomList" parameterType="string" resultMap="baseBoardMapOpenRoom" >
+	<![CDATA[ select distinct r.room_num from room r,room_reservation rr where r.room_num = rr.room_num(+) and nvl(reservation_end,'1999-09-09') < #{reserEnd} order by r.room_num asc ]]>
+	</select>
+
+<resultMap type="rrdto" id="baseBoardMapReser">
+		<id column="ROOM_RESERVATION_NUM" jdbcType="VARCHAR" property="roomReserNum"/>   
+		<result column="MEMBER_NUM" jdbcType="BIGINT" property="memberNum"/> 
+		<result column="ROOM_NUM" jdbcType="BIGINT" property="roomNum"/>
+		<result column="RESERVATION_STATUS" jdbcType="VARCHAR" property="reserStatus"/>
+		<result column="RESERVATION_DATE" jdbcType="TIMESTAMP" property="reserDate"/>
+		<result column="RESERVATION_CHARGE" jdbcType="BIGINT" property="reserCharge"/>
+		<result column="RESERVATION_START" jdbcType="TIMESTAMP" property="reserStart"/>
+		<result column="RESERVATION_END" jdbcType="TIMESTAMP" property="reserEnd"/>
+		<result column="ROOM_CUSTOM" jdbcType="VARCHAR" property="reserCustom"/>
+	</resultMap>
+	
+	<!-- 예약 리스트 -->
+	<select id="roomReserList" parameterType="string" resultMap="baseBoardMapReser">
+		select <include refid="basecolumnReser" /> from ROOM_RESERVATION
+	</select> 
+	
+	<!-- 고객정보로 예약 리스트 받기 -->
+	<select id="roomReserMemberList" parameterType="integer" resultMap="baseBoardMapReser">
+		select <include refid="basecolumnReser" /> from ROOM_RESERVATION
+		where member_num = #{memberNum}
+	</select> 
+	
+	 <!-- 추가결제요청  리스트  -->
+     <resultMap type="addpaydto" id="baseBoardMapAddpaylist">
+		<id column="ADD_PAYMENT_NUM" jdbcType="BIGINT" property="addpaymentNum"/>   
+		<result column="ORDER_NUM" jdbcType="BIGINT" property="orderNum"/>
+		<result column="ROOM_RESERVATION_NUM" jdbcType="BIGINT" property="roomReserNum"/>
+		<result column="MEMBER_NUM" jdbcType="BIGINT" property="memberNum"/>  
+		<result column="ADD_PAYMENT_STATUS" jdbcType="VARCHAR" property="addpaymentStatus"/>  
+		<result column="ADD_PAYMENT_MEANS" jdbcType="VARCHAR" property="addpaymentMeans"/>  
+		<result column="ADD_PAYMENT_CHARGE" jdbcType="BIGINT" property="addpaymentCharge"/>  
+	</resultMap>
+	
+	<!-- 추가결제 요청 리스트 받기 -->
+	<select id="roomTotalpaymentList" parameterType="integer" resultMap="baseBoardMapAddpaylist">
+		select <include refid="basecolumnAddPayMent" /> from ADDPAYMENT
+		where member_num = #{memberNum} and ADD_PAYMENT_MEANS = 'card'
+	</select> 
+	
+	<!-- 룸서비스 주문 -->
+	<insert id="roomOrderInsert" parameterType="model.DTO.RoomOrderDTO" >
+	insert into ROOMORDER ( <include refid="basecolumnOrder" /> )
+	values(#{orderNum}, #{roomReserNum}, #{memberNum}, #{menuName}, #{restaurantNum}, #{orderCount}, #{orderEtc})
+	</insert>
+	
+	
+	<update id="addPaymentUpdate" parameterType="model.DTO.AddPayMentMainDTO">
+	update ADDPAYMENT
+	<trim prefix="set" suffixOverrides=",">
+		<if test="ratingNum != null">
+			ADD_PAYMENT_MEANS = #{addpaymentMeans},
+		</if>
+		</trim>
+	where ORDER_NUM = #{orderNum}
+	</update>
+	
+     <!-- 임시 메뉴 리스트 -->
+     <resultMap type="menu" id="baseBoardMapMenu">
+		<id column="MENU_NAME" jdbcType="VARCHAR" property="menuName"/>   
+		<result column="RESTAURANT_NUM" jdbcType="BIGINT" property="restaurantNum"/> 
+		<result column="MENU_PRICE" jdbcType="BIGINT" property="menuPrice"/>
+		<result column="MENU_DESCRIPTION" jdbcType="VARCHAR" property="menuDescription"/>
+		<result column="MENU_IMAGE" jdbcType="VARCHAR" property="menuImage"/>
+	</resultMap>
+      <!-- 임시 메뉴 리스트 -->
+      <sql id="basecolumnMenu">
+      MENU_NAME,RESTAURANT_NUM,MENU_PRICE,MENU_DESCRIPTION,MENU_IMAGE
+	</sql>
+     <select id="restaurantList" parameterType="string" resultMap="baseBoardMapMenu">
+		select distinct RESTAURANT_NUM from Menu
+	</select> 
+	<!-- 레스토랑이름으로 메뉴 정보 받기 -->
+	<select id="restaurantMenuList" parameterType="long" resultMap="baseBoardMapMenu">
+		select <include refid="basecolumnMenu" /> from Menu
+		where restaurant_num = #{restaurantNum}
+	</select> 
+	
+	
+	<!-- 룸서비스 주문  -->
+     <resultMap type="rodto" id="baseBoardMapOrder">
+		<id column="ORDER_NUM" jdbcType="BIGINT" property="orderNum"/>   
+		<result column="ROOM_RESERVATION_NUM" jdbcType="VARCHAR" property="roomReserNum"/> 
+		<result column="MEMBER_NUM" jdbcType="BIGINT" property="memberNum"/>
+		<result column="MENU_NAME" jdbcType="VARCHAR" property="menuName"/>
+		<result column="RESTAURANT_NUM" jdbcType="BIGINT" property="restaurantNum"/>
+		<result column="ORDER_COUNT" jdbcType="BIGINT" property="orderCount"/>
+		<result column="ORDER_ETC" jdbcType="VARCHAR" property="orderEtc"/>
+	</resultMap>
+	
+	
+	<!-- 고객정보로 룸서비스주문리스트 받기 -->
+	<select id="roomOrderList" parameterType="integer" resultMap="baseBoardMapOrder">
+		select <include refid="basecolumnOrder" /> from ROOMORDER
+		where member_num = #{memberNum}
+	</select> 
+	
+	<!-- 고객정보 주문번호로 룸서비스 주문리스트 받기 -->
+	<select id="roomOrderMemberList" parameterType="long" resultMap="baseBoardMapOrder">
+		select <include refid="basecolumnOrder" /> from ROOMORDER
+		where order_num = #{orderNum} 
+	</select> 
+	
+	 <!-- 룸서비스주문 총합 계산 -->
+     <resultMap type="apmdto" id="baseBoardMapApm">
+		<id column="MENU_NAME" jdbcType="VARCHAR" property="menuName"/>   
+		<result column="MENU_PRICE" jdbcType="BIGINT" property="menuPrice"/>
+		<result column="ORDER_COUNT" jdbcType="BIGINT" property="orderCount"/>
+		<result column="ORDER_NUM" jdbcType="BIGINT" property="orderNum"/>  
+		<result column="TOTAL_SUM" jdbcType="BIGINT" property="totalSum"/>  
+	</resultMap>
+	
+	<!--주문번호로 총계산 받기 -->
+	<select id="addPayMentList" parameterType="long" resultMap="baseBoardMapApm">
+	select M.MENU_NAME,MENU_PRICE,order_count,order_num , MENU_PRICE * nvl(order_count,0) as "TOTAL_SUM" 
+	from MENU M, ROOMORDER R 
+	where m.menu_name = r.menu_name(+) and order_count is not null and order_num = #{orderNum} 
+	</select> 
+	
+	<!-- 추가결제  -->
+	<insert id="addPaymentInsert" parameterType="model.DTO.AddPayMentMainDTO" >
+	insert into ADDPAYMENT ( <include refid="basecolumnAddPayMent" /> )
+	values(#{addpaymentNum}, #{orderNum}, #{roomReserNum}, #{memberNum}, #{addpaymentStatus}, #{addpaymentMeans}, #{addpaymentCharge})
+	</insert>
+	
+	<!--객실예약정보로 총요금 받기 -->
+	<select id="roomPaymentList" parameterType="string" resultMap="baseBoardMapReser">
+		select <include refid="basecolumnReser" /> from ROOM_RESERVATION
+		where ROOM_RESERVATION_NUM = #{roomReserNum}
+	</select> 
+	
+</mapper>
